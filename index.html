@@ -21,34 +21,26 @@
     *{box-sizing:border-box}
     body{
       margin:0;
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial,
-                   "Apple Color Emoji","Segoe UI Emoji";
+      font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial;
       background:var(--bg);
       color:var(--fg);
       line-height:1.65;
     }
     header{
       border-bottom:1px solid var(--border);
-      background:linear-gradient(180deg,#fff, #fff 60%, #f8fafc);
+      background:linear-gradient(180deg,#fff,#fff 60%,#f8fafc);
     }
-    .wrap{max-width:var(--max); margin:0 auto; padding:28px 18px;}
-    h1{font-size:28px; margin:0 0 8px;}
-    .sub{color:var(--muted); margin:0 0 14px;}
-    .badges{display:flex; gap:8px; flex-wrap:wrap; margin:12px 0 0;}
+    .wrap{max-width:var(--max);margin:0 auto;padding:28px 18px;}
+    h1{font-size:28px;margin:0 0 8px;}
+    .sub{color:var(--muted);margin:0 0 14px;}
+    .badges{display:flex;gap:8px;flex-wrap:wrap;margin:12px 0 0;}
     .badge{
-      display:inline-flex; align-items:center; gap:6px;
-      background:var(--badge); color:var(--badge-fg);
+      display:inline-flex;align-items:center;gap:6px;
+      background:var(--badge);color:var(--badge-fg);
       border:1px solid #c7d2fe;
-      padding:6px 10px; border-radius:999px; font-size:12px;
+      padding:6px 10px;border-radius:999px;font-size:12px;
     }
     main{padding:22px 0 40px;}
-    .panel{
-      background:var(--card);
-      border:1px solid var(--border);
-      border-radius:var(--radius);
-      padding:14px 14px 12px;
-      margin:18px 0 22px;
-    }
     section{
       border:1px solid var(--border);
       border-radius:var(--radius);
@@ -56,349 +48,188 @@
       margin:14px 0;
       background:#fff;
     }
-    h2{font-size:18px; margin:0 0 10px;}
-    h3{font-size:15px; margin:12px 0 6px;}
+    h2{font-size:18px;margin:0 0 10px;}
+    h3{font-size:15px;margin:12px 0 6px;}
     p{margin:8px 0;}
     ul{margin:8px 0 8px 18px;}
     li{margin:4px 0;}
     .muted{color:var(--muted);}
-    .hr{height:1px; background:var(--border); margin:18px 0;}
-    .small{font-size:12px; color:var(--muted);}
+    .hr{height:1px;background:var(--border);margin:18px 0;}
+    footer{
+      border-top:1px solid var(--border);
+      background:#f8fafc;
+    }
+    .small{font-size:12px;color:var(--muted);}
     a{color:var(--link);}
-
-    /* Language toggle buttons */
-    .langbar{display:flex; gap:8px; flex-wrap:wrap; margin:8px 0 0;}
-    .langbtn{
-      appearance:none;
-      border:1px solid var(--border);
-      background:#fff;
-      color:var(--fg);
-      padding:8px 12px;
-      border-radius:999px;
-      font-size:13px;
-      cursor:pointer;
-    }
-    .langbtn:hover{background:var(--card);}
-    .langbtn.active{
-      background:var(--badge);
-      color:var(--badge-fg);
-      border-color:#c7d2fe;
-      font-weight:600;
-    }
-    .debug{
-      margin-top:10px;
-      padding-top:10px;
-      border-top:1px dashed var(--border);
-      display:none; /* set to block if you want to show debug */
-    }
-    code{background:#f3f4f6; padding:2px 6px; border-radius:6px;}
   </style>
 </head>
 
 <body>
-  <header>
-    <div class="wrap">
-      <h1>Privacy Policy</h1>
-      <p class="sub">
-        <strong>My Moments</strong><br/>
-        This page describes how the app collects, uses, stores, and protects user information.
-      </p>
-
-      <div class="badges">
-        <span class="badge">Backup/Restore: Firebase Firestore</span>
-        <span class="badge">Ads: Google AdMob</span>
-        <span class="badge">No proprietary server</span>
-      </div>
-
-      <p class="small" style="margin-top:14px;">
-        Last updated: <strong>2025-12-28</strong> · Contact:
-        <a href="mailto:projectjhy@gmail.com"><strong>projectjhy@gmail.com</strong></a>
-      </p>
-    </div>
-  </header>
-
-  <main class="wrap">
-    <div class="panel" aria-label="Language selection">
-      <strong>Language / 언어</strong>
-      <div class="langbar">
-        <button type="button" class="langbtn" data-lang="en" aria-controls="en" aria-pressed="false">English</button>
-        <button type="button" class="langbtn" data-lang="ko" aria-controls="ko" aria-pressed="false">한국어</button>
-      </div>
-      <div class="small muted" style="margin-top:10px;">
-        You can force a language via <code>?lang=en</code> or <code>?lang=ko</code>.
-      </div>
-
-      <!-- Optional debug area: shows how language was chosen -->
-      <div class="debug small muted" id="langDebug"></div>
-    </div>
-
-    <!-- English (only one of these will be visible at a time) -->
-    <section id="en">
-      <h2>English</h2>
-      <p>
-        This Privacy Policy explains how <strong>My Moments</strong> (the “App”) collects, uses, stores,
-        and protects user information. By using the App, you agree to this Privacy Policy.
-      </p>
-
-      <h3>1. Information We Collect</h3>
-      <ul>
-        <li>
-          <strong>Account Information</strong>:
-          Google account identifiers provided via Google Sign-In (used for authentication and backup/restore).
-        </li>
-        <li>
-          <strong>User-Generated Content</strong>:
-          data created by users within the App (e.g., records and collection data), stored for backup/restore.
-        </li>
-        <li>
-          <strong>Advertising Information</strong>:
-          the App uses <strong>Google AdMob</strong>. AdMob may collect device information, advertising identifiers
-          (e.g., Advertising ID), and cookies or similar technologies to serve and measure ads.
-        </li>
-      </ul>
-      <p class="muted">
-        The App does not directly collect additional personal information such as name, address, phone number, or precise location.
-      </p>
-
-      <h3>2. How We Use Information</h3>
-      <ul>
-        <li>Authenticate users and identify accounts</li>
-        <li>Provide <strong>backup and restore</strong> functionality</li>
-        <li>Serve advertisements and measure ad performance</li>
-        <li>Operate and improve core app functionality</li>
-      </ul>
-
-      <h3>3. Data Storage & Processing</h3>
-      <ul>
-        <li>User data is stored in <strong>Google Firebase Firestore</strong> when backup/restore is enabled by the user.</li>
-        <li>The App does <strong>not</strong> operate proprietary servers or transmit data to any proprietary server.</li>
-        <li>Security and access control follow Google Firebase and AdMob security practices and policies.</li>
-      </ul>
-
-      <h3>4. Third-Party Services</h3>
-      <p>The App does not sell user data. The following third-party services are used for app functionality:</p>
-      <ul>
-        <li><strong>Google Firebase</strong>: authentication and data backup/restore</li>
-        <li><strong>Google AdMob</strong>: advertising and measurement</li>
-      </ul>
-
-      <h3>5. Children’s Privacy</h3>
-      <p>
-        The App is not designed to knowingly collect personal information from children. If you believe a child has
-        provided personal information, please contact us and we will take appropriate steps.
-      </p>
-
-      <h3>6. Data Deletion</h3>
-      <ul>
-        <li>Users can stop using the App at any time by uninstalling it or disconnecting Google Sign-In.</li>
-        <li>Data stored in Firebase may be deleted upon account removal or user request.</li>
-      </ul>
-
-      <h3>7. Security</h3>
-      <ul>
-        <li>The App uses security features provided by Google Firebase and AdMob.</li>
-        <li>Reasonable technical safeguards are applied to protect user data from unauthorized access or disclosure.</li>
-      </ul>
-
-      <h3>8. Changes to This Policy</h3>
-      <p>
-        This Privacy Policy may be updated due to app changes or legal requirements. Updates will be posted on this page.
-      </p>
-
-      <h3>9. Contact</h3>
-      <p>
-        If you have any questions regarding this Privacy Policy, please contact:<br/>
-        Email: <a href="mailto:projectjhy@gmail.com"><strong>projectjhy@gmail.com</strong></a>
-      </p>
-    </section>
-
-    <!-- Korean -->
-    <section id="ko" lang="ko">
-      <h2>한국어</h2>
-      <p>
-        본 개인정보 처리방침은 <strong>나의 모든 순간</strong> 앱(이하 “앱”)이 사용자 정보를 어떻게 수집, 이용, 보관 및 보호하는지 설명합니다.
-        사용자는 앱을 이용함으로써 본 방침에 동의하게 됩니다.
-      </p>
-
-      <h3>1. 수집하는 정보</h3>
-      <ul>
-        <li>
-          <strong>계정 정보</strong>:
-          Google 로그인 과정에서 제공되는 Google 계정 식별 정보(인증 및 백업/복원 목적)
-        </li>
-        <li>
-          <strong>사용자 생성 데이터</strong>:
-          사용자가 앱 내에서 입력/생성한 기록 및 컬렉션 데이터(백업/복원 기능 제공을 위해 저장될 수 있음)
-        </li>
-        <li>
-          <strong>광고 관련 정보</strong>:
-          본 앱은 <strong>Google AdMob</strong>을 사용하며, 광고 제공 및 성과 측정을 위해 기기 정보, 광고 식별자(Advertising ID),
-          쿠키 또는 유사 기술 정보가 수집될 수 있습니다.
-        </li>
-      </ul>
-      <p class="muted">
-        ※ 본 앱은 이름, 주소, 전화번호, 정확한 위치 정보 등 추가적인 개인정보를 직접 수집하지 않습니다.
-      </p>
-
-      <h3>2. 이용 목적</h3>
-      <ul>
-        <li>사용자 인증 및 계정 식별</li>
-        <li>앱 데이터의 <strong>백업 및 복원</strong> 기능 제공</li>
-        <li>광고 제공 및 광고 성과 분석</li>
-        <li>앱 기능 제공 및 개선</li>
-      </ul>
-
-      <h3>3. 보관 및 처리</h3>
-      <ul>
-        <li>백업/복원 기능 사용 시 사용자 데이터는 <strong>Google Firebase Firestore</strong>에 저장됩니다.</li>
-        <li>본 앱은 <strong>자체 서버를 운영하거나 개인정보를 자체 서버로 전송하지 않습니다.</strong></li>
-        <li>보안 및 접근 제어는 Google Firebase 및 AdMob의 보안 정책을 따릅니다.</li>
-      </ul>
-
-      <h3>4. 제3자 서비스</h3>
-      <p>본 앱은 사용자의 정보를 판매하지 않습니다. 다만 기능 제공을 위해 아래 서비스를 사용합니다.</p>
-      <ul>
-        <li><strong>Google Firebase</strong>: 로그인 인증, 데이터 백업/복원</li>
-        <li><strong>Google AdMob</strong>: 광고 제공 및 성과 측정</li>
-      </ul>
-
-      <h3>5. 아동의 개인정보 보호</h3>
-      <p>
-        본 앱은 아동으로부터 개인정보를 고의로 수집하지 않습니다. 아동이 개인정보를 제공했다고 판단되는 경우
-        아래 연락처로 문의해 주시면 적절한 조치를 취하겠습니다.
-      </p>
-
-      <h3>6. 데이터 삭제</h3>
-      <ul>
-        <li>사용자는 언제든지 앱 삭제 또는 Google 계정 연결 해제로 이용을 중단할 수 있습니다.</li>
-        <li>Firebase에 저장된 데이터는 계정 삭제 또는 사용자 요청 시 삭제될 수 있습니다.</li>
-      </ul>
-
-      <h3>7. 보안</h3>
-      <ul>
-        <li>본 앱은 Google Firebase 및 AdMob이 제공하는 보안 기능을 사용합니다.</li>
-        <li>무단 접근 및 정보 유출 방지를 위해 합리적인 기술적 보호 조치를 적용합니다.</li>
-      </ul>
-
-      <h3>8. 방침 변경</h3>
-      <p>
-        본 개인정보 처리방침은 앱 업데이트 또는 법령 변경에 따라 수정될 수 있으며, 변경 사항은 본 페이지에 게시됩니다.
-      </p>
-
-      <h3>9. 문의</h3>
-      <p>
-        개인정보 처리방침 관련 문의:<br/>
-        이메일: <a href="mailto:projectjhy@gmail.com"><strong>projectjhy@gmail.com</strong></a>
-      </p>
-    </section>
-
-    <div class="hr"></div>
-    <p class="small">
-      Note: This is a general privacy policy page for app distribution. Please ensure it matches your actual app behavior and any regional legal requirements.
+<header>
+  <div class="wrap">
+    <h1>Privacy Policy</h1>
+    <p class="sub">
+      <strong>My Moments</strong><br/>
+      This page explains how the app collects, uses, and protects user information.
     </p>
-  </main>
-
-  <footer>
-    <div class="wrap">
-      <p class="small" style="margin:0;">
-        © <span id="y"></span> My Moments. All rights reserved.
-      </p>
+    <div class="badges">
+      <span class="badge">Ads: Google AdMob</span>
+      <span class="badge">No account required</span>
+      <span class="badge">No proprietary server</span>
     </div>
-  </footer>
+    <p class="small" style="margin-top:14px;">
+      Last updated: <strong>2025-12-28</strong> · Contact:
+      <a href="mailto:projectjhy@gmail.com"><strong>projectjhy@gmail.com</strong></a>
+    </p>
+  </div>
+</header>
 
-  <script>
-    // Footer year
-    document.getElementById("y").textContent = new Date().getFullYear();
+<main class="wrap">
 
-    const sections = {
-      en: document.getElementById("en"),
-      ko: document.getElementById("ko")
-    };
-    const buttons = Array.from(document.querySelectorAll(".langbtn"));
-    const STORAGE_KEY = "privacy_lang";
-    const debugEl = document.getElementById("langDebug");
+<section>
+  <h2>English</h2>
 
-    function setLang(lang, meta = {}) {
-      const isKo = lang === "ko";
-      sections.en.style.display = isKo ? "none" : "block";
-      sections.ko.style.display = isKo ? "block" : "none";
+  <h3>1. Information We Collect</h3>
+  <p>
+    The App does not require users to create an account or sign in.
+    The App itself does not directly collect personal information such as name,
+    email address, phone number, or precise location.
+  </p>
+  <p>
+    The App uses <strong>Google AdMob</strong> to display advertisements.
+    AdMob may automatically collect:
+  </p>
+  <ul>
+    <li>Device information</li>
+    <li>Advertising identifiers (e.g., Advertising ID)</li>
+    <li>Cookies or similar technologies</li>
+  </ul>
 
-      buttons.forEach(b => {
-        const active = b.dataset.lang === lang;
-        b.classList.toggle("active", active);
-        b.setAttribute("aria-pressed", active ? "true" : "false");
-      });
+  <h3>2. How Information Is Used</h3>
+  <ul>
+    <li>To display advertisements</li>
+    <li>To measure ad performance and improve ad relevance</li>
+    <li>To operate and improve the App</li>
+  </ul>
 
-      // Set html lang for accessibility and translation tools
-      document.documentElement.lang = lang;
+  <h3>3. Data Sharing</h3>
+  <p>
+    The App does not sell user data.
+    Advertising-related data may be processed by <strong>Google AdMob</strong>
+    in accordance with Google’s Privacy Policy.
+  </p>
 
-      // Update hash without jumping
-      try { history.replaceState(null, "", "#" + lang); } catch(e) {}
+  <h3>4. Data Security</h3>
+  <p>
+    Data processed by third-party services is transmitted securely using industry-standard
+    encryption (e.g., HTTPS/TLS).
+  </p>
 
-      // Optional debug (kept hidden by default via CSS)
-      if (debugEl) {
-        const lines = [
-          `Selected: ${lang}`,
-          `Reason: ${meta.reason || "n/a"}`,
-          `navigator.language: ${meta.browserLang || (navigator.language || "n/a")}`,
-          `navigator.languages: ${(navigator.languages || []).join(", ") || "n/a"}`,
-          `query(?lang): ${meta.qLang || "n/a"}`,
-          `stored: ${meta.saved || "n/a"}`,
-          `hash: ${meta.hash || "n/a"}`
-        ];
-        debugEl.textContent = lines.join(" | ");
-      }
-    }
+  <h3>5. Children’s Privacy</h3>
+  <p>
+    The App does not knowingly collect personal information from children.
+    If you believe that a child has provided personal information,
+    please contact us so that appropriate action can be taken.
+  </p>
 
-    function resolveInitialLang() {
-      // 1) query param ?lang=ko|en (highest priority)
-      const params = new URLSearchParams(location.search);
-      const qLangRaw = (params.get("lang") || "").toLowerCase();
-      const qLang = (qLangRaw === "ko" || qLangRaw === "en") ? qLangRaw : "";
+  <h3>6. Data Deletion</h3>
+  <p>
+    The App does not store personal user data on proprietary servers.
+    Advertising data is handled according to Google AdMob’s data retention policies.
+  </p>
 
-      // 2) localStorage
-      const savedRaw = (localStorage.getItem(STORAGE_KEY) || "").toLowerCase();
-      const saved = (savedRaw === "ko" || savedRaw === "en") ? savedRaw : "";
+  <h3>7. Changes to This Policy</h3>
+  <p>
+    This Privacy Policy may be updated from time to time.
+    Any changes will be posted on this page.
+  </p>
 
-      // 3) hash
-      const hashRaw = (location.hash || "").replace("#", "").toLowerCase();
-      const hash = (hashRaw === "ko" || hashRaw === "en") ? hashRaw : "";
+  <h3>8. Contact</h3>
+  <p>
+    If you have any questions about this Privacy Policy, please contact:<br/>
+    <a href="mailto:projectjhy@gmail.com"><strong>projectjhy@gmail.com</strong></a>
+  </p>
+</section>
 
-      // 4) browser language (navigator.languages is more accurate than navigator.language)
-      const langs = (navigator.languages && navigator.languages.length)
-        ? navigator.languages
-        : [navigator.language || "en"];
+<section lang="ko">
+  <h2>한국어</h2>
 
-      const browserLang = (langs[0] || "en").toLowerCase();
-      const browserPref = browserLang.startsWith("ko") ? "ko" : "en";
+  <h3>1. 수집하는 정보</h3>
+  <p>
+    본 앱은 계정 생성이나 로그인을 요구하지 않으며,
+    이름, 이메일 주소, 전화번호, 정확한 위치 정보 등의 개인정보를 직접 수집하지 않습니다.
+  </p>
+  <p>
+    본 앱은 <strong>Google AdMob</strong> 광고 서비스를 사용하며,
+    광고 제공 및 성과 측정을 위해 다음 정보가 자동으로 수집될 수 있습니다.
+  </p>
+  <ul>
+    <li>기기 정보</li>
+    <li>광고 식별자(Advertising ID)</li>
+    <li>쿠키 또는 유사 기술</li>
+  </ul>
 
-      // Choose initial by priority
-      if (qLang) return { lang: qLang, reason: "query", qLang, saved, hash, browserLang };
-      if (saved) return { lang: saved, reason: "storage", qLang, saved, hash, browserLang };
-      if (hash)  return { lang: hash,  reason: "hash", qLang, saved, hash, browserLang };
-      return { lang: browserPref, reason: "browser", qLang, saved, hash, browserLang };
-    }
+  <h3>2. 정보 이용 목적</h3>
+  <ul>
+    <li>광고 제공</li>
+    <li>광고 성과 측정 및 개선</li>
+    <li>앱 기능 운영 및 개선</li>
+  </ul>
 
-    function persist(lang) {
-      try { localStorage.setItem(STORAGE_KEY, lang); } catch(e) {}
-    }
+  <h3>3. 정보 공유</h3>
+  <p>
+    본 앱은 사용자의 개인정보를 판매하지 않습니다.
+    광고 관련 데이터는 Google AdMob의 개인정보 처리방침에 따라 처리됩니다.
+  </p>
 
-    // Initial language selection (uses browser settings if no overrides exist)
-    const initial = resolveInitialLang();
-    setLang(initial.lang, initial);
+  <h3>4. 보안</h3>
+  <p>
+    제3자 서비스에서 처리되는 데이터는 HTTPS/TLS 등 표준 보안 프로토콜을 통해 안전하게 전송됩니다.
+  </p>
 
-    // Persist the initial only if it came from query/hash/storage? -> keep user intent.
-    // If it came from browser, do not persist to allow future automatic behavior unless user toggles.
-    if (initial.reason !== "browser") persist(initial.lang);
+  <h3>5. 아동의 개인정보 보호</h3>
+  <p>
+    본 앱은 아동으로부터 개인정보를 고의로 수집하지 않습니다.
+    아동의 개인정보 제공이 의심되는 경우 연락 주시면 조치하겠습니다.
+  </p>
 
-    // Manual toggle always persists
-    buttons.forEach(btn => {
-      btn.addEventListener("click", () => {
-        const lang = btn.dataset.lang;
-        persist(lang);
-        setLang(lang, { reason: "manual" });
-      });
-    });
-  </script>
+  <h3>6. 개인정보 삭제</h3>
+  <p>
+    본 앱은 자체 서버에 개인정보를 저장하지 않으며,
+    광고 데이터는 Google AdMob 정책에 따라 관리됩니다.
+  </p>
+
+  <h3>7. 방침 변경</h3>
+  <p>
+    본 개인정보 처리방침은 변경될 수 있으며,
+    변경 시 본 페이지를 통해 안내됩니다.
+  </p>
+
+  <h3>8. 문의</h3>
+  <p>
+    개인정보 처리방침 관련 문의:<br/>
+    <a href="mailto:projectjhy@gmail.com"><strong>projectjhy@gmail.com</strong></a>
+  </p>
+</section>
+
+<div class="hr"></div>
+<p class="small">
+  Note: This privacy policy reflects the current functionality of the app.
+  Features involving account-based data synchronization may be added in future updates.
+</p>
+
+</main>
+
+<footer>
+  <div class="wrap">
+    <p class="small" style="margin:0;">
+      © <span id="y"></span> My Moments. All rights reserved.
+    </p>
+  </div>
+</footer>
+
+<script>
+  document.getElementById("y").textContent = new Date().getFullYear();
+</script>
 </body>
 </html>
