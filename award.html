@@ -80,16 +80,36 @@
       openLink.href = schemeUrl;
       storeLink.href = appStoreUrl || playStoreUrl;
 
-      function openApp() {
-        window.location.href = schemeUrl;
-        setTimeout(() => {
+      let storeTimer = null;
+      let didHide = false;
+
+      function scheduleStoreFallback() {
+        storeTimer = setTimeout(() => {
+          if (didHide) return;
           if (appStoreUrl) {
             window.location.href = appStoreUrl;
           } else {
             window.location.href = playStoreUrl;
           }
-        }, 1500);
+        }, 1800);
       }
+
+      function openApp() {
+        didHide = false;
+        scheduleStoreFallback();
+        window.location.href = schemeUrl;
+      }
+
+      document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+          didHide = true;
+          if (storeTimer) clearTimeout(storeTimer);
+        }
+      });
+      window.addEventListener("pagehide", () => {
+        didHide = true;
+        if (storeTimer) clearTimeout(storeTimer);
+      });
 
       openApp();
     </script>
