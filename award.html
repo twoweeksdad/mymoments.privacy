@@ -57,9 +57,10 @@
   </head>
   <body>
     <div class="card">
-      <h1>Open your award collection</h1>
-      <p>If the app is installed, it will open automatically.</p>
-      <p class="hint">If nothing happens, use the buttons below.</p>
+      <h1 id="title">Open your award collection</h1>
+      <p id="intro">If the app is installed, it will open automatically.</p>
+      <p class="hint" id="androidOnly">Currently available on Android only.</p>
+      <p class="hint" id="fallback">If nothing happens, use the buttons below.</p>
       <div class="actions">
         <a class="button" id="openLink" href="#">Open in app</a>
         <a class="button secondary" id="storeLink" href="#">Install app</a>
@@ -76,9 +77,32 @@
 
       const openLink = document.getElementById("openLink");
       const storeLink = document.getElementById("storeLink");
+      const title = document.getElementById("title");
+      const intro = document.getElementById("intro");
+      const androidOnly = document.getElementById("androidOnly");
+      const fallback = document.getElementById("fallback");
 
       openLink.href = schemeUrl;
       storeLink.href = appStoreUrl || playStoreUrl;
+
+      const isKst = () => {
+        try {
+          return Intl.DateTimeFormat()
+            .resolvedOptions()
+            .timeZone === "Asia/Seoul";
+        } catch (_) {
+          return false;
+        }
+      };
+
+      if (isKst()) {
+        title.textContent = "컬렉션을 열어보세요";
+        intro.textContent = "앱이 설치되어 있다면 자동으로 열립니다.";
+        androidOnly.textContent = "현재는 안드로이드에서만 지원해요.";
+        fallback.textContent = "열리지 않으면 아래 버튼을 눌러주세요.";
+        openLink.textContent = "앱에서 열기";
+        storeLink.textContent = "앱 설치하기";
+      }
 
       let storeTimer = null;
       let didHide = false;
