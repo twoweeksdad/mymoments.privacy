@@ -73,6 +73,10 @@
         "https://play.google.com/store/apps/details?id=com.twoweeksdad.mymoments" +
         "&referrer=" +
         encodeURIComponent(query);
+      const intentUrl =
+        "intent://award?" +
+        query +
+        "#Intent;scheme=mymoments;package=com.twoweeksdad.mymoments;end";
       const appStoreUrl = "";
 
       const openLink = document.getElementById("openLink");
@@ -82,7 +86,10 @@
       const androidOnly = document.getElementById("androidOnly");
       const fallback = document.getElementById("fallback");
 
-      openLink.href = schemeUrl;
+      const ua = navigator.userAgent || "";
+      const isAndroid = /Android/i.test(ua);
+
+      openLink.href = isAndroid ? intentUrl : schemeUrl;
       storeLink.href = appStoreUrl || playStoreUrl;
 
       const isKst = () => {
@@ -115,13 +122,13 @@
           } else {
             window.location.href = playStoreUrl;
           }
-        }, 1800);
+        }, isAndroid ? 800 : 1500);
       }
 
       function openApp() {
         didHide = false;
         scheduleStoreFallback();
-        window.location.href = schemeUrl;
+        window.location.href = isAndroid ? intentUrl : schemeUrl;
       }
 
       document.addEventListener("visibilitychange", () => {
